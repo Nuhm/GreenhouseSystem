@@ -1,0 +1,211 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.title {
+    margin-top: 2%;
+    font-size: xx-large;
+    text-align: center;
+    width: 100%;
+}
+
+.status {
+    width: 100%;
+    font-size: x-large;
+    text-align: center;
+}
+
+.airDetails {
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+.airDetails div {
+    flex: 1;
+    width: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+.airDetails div p {
+    width: 100%;
+    margin-top: 1%;
+    text-align: center;
+    font-size: large;
+}
+.airDetails .color-bar {
+    flex: 1;
+    width: 10%;
+    margin-left: 1%;
+    margin-right: 1%;
+    min-width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.water {
+    margin-top: 5%;
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    padding: 2%;
+}
+.water .status{
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-bottom: 2%;
+}
+.water .status div {
+    flex: 1;
+}
+.water .status p {
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center; 
+}
+.water .status .header {
+    font-size: large;
+}
+.water .status .indicator {
+    width: 50%;
+    font-size: xx-large;
+    margin-top: 0.5%;
+    padding: 3%;
+    border-radius: 15px;
+}
+.water .status .loading{
+    background-color: whitesmoke;
+}
+.water .status .off{
+    background-color: rgb(231, 66, 66);
+}
+.water .status .on{
+    background-color: rgb(25, 206, 70);
+}
+
+.water .waterBtn {
+    transition: 0.2s;
+    cursor: pointer;
+    font-size: xx-large;
+    width: 15%;
+    border-radius: 15px;
+    padding: 1%;
+    border: 0px;
+}
+.water .buttonOff {
+    transition: 0.2s;
+    background-color: #08c3e8;
+}
+.water .buttonOff:hover {
+    transition: 0.2s;
+    background-color: #0cd2f9;
+}
+.buttonWait {
+    transition: 0.5s;
+    background-color: silver;
+    padding: 5%;
+}
+.buttonFail {
+    transition: 0.2s;
+    background-color: #FF0044;
+}
+.buttonComplete {
+    transition: 0.2s;
+    background-color: #06a85c;
+}
+.water a {
+    text-decoration: none;
+    color: black;
+}
+.scheduleBtn {
+    font-size: x-large;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    background-color: rgb(121, 235, 121);
+    padding: 1%;
+    width: 25%;
+    border-radius: 15px;
+}
+.scheduleBtn:hover{
+    transition: 0.2s;
+    background-color: lightgreen;
+}
+
+.dataBtn {
+    font-size: x-large;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    background-color: salmon;
+    padding: 1%;
+    width: 25%;
+    border-radius: 15px;
+}
+.dataBtn:hover{
+    transition: 0.2s;
+    background-color: lightsalmon;
+}
+
+.deviceDetails {
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+.deviceDetails div {
+    flex: 1;
+    width: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+.deviceDetails div p {
+    width: 100%;
+    margin-top: 1%;
+    text-align: center;
+    font-size: large;
+}
+.deviceDetails .color-bar {
+    flex: 1;
+    width: 10%;
+    margin-left: 1%;
+    margin-right: 1%;
+    min-width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 1000px){
+    .water .waterBtn{
+        margin-top: 5%;
+        width: 45%;
+    }
+
+    .water .status .header {
+        width:90%;
+    }
+    .water .status .indicator {
+        margin-top: 5%;
+        margin-left: 2%;
+        margin-right: 2%;
+        width: 90%;
+    }
+}

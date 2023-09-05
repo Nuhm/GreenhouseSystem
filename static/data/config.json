@@ -1,0 +1,29 @@
+{
+    "schedule": {
+        "_description": "Stores automatic watering schedule",
+        "Monday": "14:00",
+        "Tuesday": "14:00",
+        "Wednesday": "14:00",
+        "Thursday": "14:00",
+        "Friday": "14:00",
+        "Saturday": "14:00",
+        "Sunday": "14:00"
+    },
+    "watering": {
+        "_description": "Data relevent to watering",
+        "duration": "00:01"
+    },
+    "updateFreq": {
+        "_description": "The time in seconds between updates",
+        "time": 5
+    },
+    "tempSettings": {
+        "_description": "Boundary for home heating on/off",
+        "high": 16,
+        "low": 14
+    },
+    "heatControl": {
+        "_description": "Window open temp",
+        "high": 25
+    }
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<link rel="stylesheet" href="../static/css/data.css">
+<script src="../static/script/data.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenhouse</title>
+</head>
+<body>
+    <p class="title">[ Greenhouse system ]</p>
+    <br>
+    <br>
+
+    <div class="controls">
+        <div>
+            <p>Specific date</p>
+            <input type="date" id="startDateInput">
+            <input type="date" id="endDateInput">
+            <button id="search" onclick="searchDates()">Search</button>
+        </div>
+        <p>Quick dates</p>
+
+        <button id="today" onclick="today()">Today</button>
+        <button id="yesturday" onclick="yesturday()">Yesterday</button>
+        <button id="7days" onclick="quickDate(7)">7 Days</button>
+        <button id="15days" onclick="quickDate(15)">15 Days</button>
+        <button id="30days" onclick="quickDate(30)">30 days</button>
+    </div>
+
+    <div class="controls">
+        <button id="download" onclick="downloadData()">Download data</button>
+    </div>
+
+    <div class="airData">
+        <div class="line-graph" id="outTempVHumid">
+        </div>
+        <div class="line-graph" id="insideTempVHumid">
+        </div>
+        <div class="line-graph" id="boxTempVHumid">
+        </div>
+    </div>
+
+    <div class="deviceData">
+        <div class="line-graph" id="cpuTemp">
+        </div>
+        <div class="line-graph" id="cpuFreq">
+        </div>
+        <div class="line-graph" id="storage">
+        </div>
+    </div>
+
+    
+</body>
+</html>

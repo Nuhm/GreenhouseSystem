@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="../static/css/schedule.css">
+<script src="../static/script/schedule.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenhouse</title>
+</head>
+<body>
+    <p class="title">[ Greenhouse system ]</p>
+    
+    <div class="days">
+        <div class="day">
+            <p class="day-title">
+                Monday
+            </p>
+            <input type="time" id="mondayTime" value="HH:MM">
+        </div>
+
+        <div class="day">
+            <p class="day-title">
+                Tuesday
+            </p>
+            <input type="time" id="tuesdayTime" value="HH:MM">
+        </div>
+
+        <div class="day">
+            <p class="day-title">
+                Wednesday
+            </p>
+            <input type="time" id="wednesdayTime" value="HH:MM">
+        </div>
+
+        <div class="day">
+            <p class="day-title">
+                Thursday
+            </p>
+            <input type="time" id="thursdayTime" value="HH:MM">
+        </div>
+
+        <div class="day">
+            <p class="day-title">
+                Friday
+            </p>
+            <input type="time" id="fridayTime" value="HH:MM">
+        </div>
+
+        <div class="day">
+            <p class="day-title">
+                Saturday
+            </p>
+            <input type="time" id="saturdayTime" value="HH:MM">
+        </div>
+
+        <div class="day">
+            <p class="day-title">
+                Sunday
+            </p>
+            <input type="time" id="sundayTime" value="HH:MM">
+        </div>
+    </div>
+
+    <div  class="other">
+        <div class="durationDiv">
+            <p class="day-title">
+                Duration (Hours)
+            </p>
+            <input type="time" id="durationTime" value="HH:MM">
+        </div>
+
+        <button class="updateBtn" onclick="updateJson()">Update</button>
+    </div>
+</body>
+</html>

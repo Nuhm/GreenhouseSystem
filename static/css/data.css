@@ -1,0 +1,76 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.title {
+    margin-top: 2%;
+    font-size: xx-large;
+    text-align: center;
+    width: 100%;
+}
+
+.controls {
+    margin-bottom: 2%;
+    margin-right: auto;
+    margin-left: auto;
+    width: 60%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    padding: 2%;
+}
+
+.controls input {
+    font-size: large;
+    border: 0px;
+    border-radius: 5px;
+    padding: 1%;
+    background-color: lightblue;
+}
+.controls button {
+    margin-right: 0.5%;
+    margin-bottom: 1%;
+    font-size: large;
+    transition: 0.2s;
+    border: 0px;
+    border-radius: 5px;
+    padding: 1%;
+    width: 15%;
+    background-color: lightblue;
+}
+.controls button:hover {
+    cursor: pointer;
+    transition: 0.2s;
+    background-color: rgb(181, 228, 243);
+}
+.controls #download{
+    transition: 0.2s;
+    width: fit-content;
+    background-color: rgb(100,200,50);
+}
+.controls #download:hover{
+    transition: 0.2s;
+    cursor: pointer;
+    background-color: rgb(100,200,100);;
+}
+.controls .loading{
+    transition: 0.5s;
+    background-color: silver;
+}
+
+@media screen and (max-width: 1000px){
+    body {
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    .controls button {
+        width: 30%;
+    }
+}

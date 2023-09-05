@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="../static/css/style.css">
+<link rel="stylesheet" href="../static/css/graphs.css">
+<script src="../static/script/script.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenhouse</title>
+</head>
+<body>
+    <p class="title">[ Greenhouse system ]</p>
+    <br>
+    <br>
+    <p class="status">Service status:</p>
+    <p class="status" id="status">Loading status...</p>
+
+    <div class="airDetails">
+        <div class="box">
+            <p>Box</p>
+            <div id="boxTempBar" class="temp-color-bar color-bar" data-value="50">
+                <p id="boxTemp">Loading box temp...</p>
+            </div>
+            <div id="boxHumidBar" class="humid-color-bar color-bar" data-value="50">
+                <p id="boxHumid">Loading box humidity...</p>
+            </div>
+        </div>
+        <div class="indoor">
+            <p>Inside</p>
+            <div id="indoorTempBar" class="temp-color-bar color-bar" data-value="50">
+                <p id="indoorTemp">Loading inside temp...</p>
+            </div>
+            <div id="indoorHumidBar" class="humid-color-bar color-bar" data-value="50">
+                <p id="indoorHumid">Loading inside humidity...</p>
+            </div>
+        </div>
+
+        <div class="outside">
+            <p>Outside</p>
+            <div id="outsideTempBar" class="temp-color-bar color-bar" data-value="50">
+                <p id="outsideTemp">Loading outside temp...</p>
+            </div>
+            <div id="outsideHumidBar" class="humid-color-bar color-bar" data-value="50">
+                <p id="outsideHumid">Loading outside humidity...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="water">
+        <div class="status">
+            <div class="watering">
+                <p class="header">Watering</p>
+                <p class="indicator loading" id="watering">Loading...</p>
+            </div>
+
+            <div class="autoWatering">
+                <p class="header">Auto Watering</p>
+                <p class="indicator loading" id="autoWatering">Loading..</p>
+            </div>
+
+            <div class="window">
+                <p class="header">Window</p>
+                <p class="indicator loading" id="window">Loading...</p>
+            </div>
+        </div>
+
+        <button id="startBtn" onclick="water(true)" class="waterBtn buttonOff">Start</button>
+        <button id="stopBtn" onclick="water(false)" class="waterBtn buttonOff">Stop</button>
+
+        <a href="/schedule"><p class="scheduleBtn">Schedule</p></a>
+        <a href="/data"><p class="dataBtn">Data</p></a>
+    </div>
+
+    <div class="deviceDetails">
+        <div class="cpu">
+            <p>CPU</p>
+            <div id="cpuTempBar" class="temp-color-bar color-bar" data-value="50">
+                <p id="cpuTemp">Loading cpu temp...</p>
+            </div>
+            <div id="cpuFreqBar" class="freq-color-bar color-bar" data-value="50">
+                <p id="cpuFreq">Loading cpu freq...</p>
+            </div>
+            <div id="fanSpeedBar" class="fan-color-bar color-bar" data-value="50">
+                <p id="fanSpeed">Loading fan speed...</p>
+            </div>
+        </div>
+
+        <div class="storage">
+            <p>Storage</p>
+            <div id="storageBar" class="storage-color-bar color-bar" data-value="50">
+                <p id="storage">Loading storage...</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+</body>
+</html>
