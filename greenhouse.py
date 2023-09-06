@@ -3,9 +3,9 @@ import RPi.GPIO as io
 global crash
 
 # File/File paths
-logFilePath = "/home/green/GreenHouse/static/data/logs/"
+logFilePath = "/home/green/static/data/logs/"
 logFilesRow = ["indoorHumid","indoorTemp","outsideHumid","outsideTemp","boxHumid","boxTemp","cpuTemp","cpuFreq","storageUsed","time"]
-configPath = "/home/green/GreenHouse/static/data/config.json"
+configPath = "/home/green/static/data/config.json"
 # - - - - - - - 
 
 # Config data
@@ -27,7 +27,6 @@ running = True
 # - - - - - - - 
 
 # Pin setup
-fan = 14
 boxSensor = 2
 insideSensor = 3
 outsideSensor = 4
@@ -38,15 +37,12 @@ servo_pin = 18
 # Sensors setup
 io.setmode(io.BCM)
 io.setup(waterRelay, io.OUT)
-io.setup(fan, io.OUT)
 io.setup(servo_pin, io.OUT)
 sensor = Adafruit_DHT.DHT22
 # - - - - - - - 
 
 # Create a PWM instance
-pwm = io.PWM(fan, 50) # 50 Hz PWM frequency
 servo_pwm = io.PWM(servo_pin, 50)  # 50 Hz PWM frequency
-pwm.start(0)  # Starting PWM signal with duty cycle of 0 (corresponds to 0 speed)
 servo_pwm.start(0) # Starting PWM signal with duty cycle of 0 (corresponds to 0 degrees)
 # - - - - - - - 
 
@@ -73,6 +69,8 @@ def getDeviceData(): # Used to get device data
     global pwm
     global fanSpeed
 
+    fanSpeed = 0
+
     freq = psutil.cpu_freq()
     disk = psutil.disk_usage('/')
 
@@ -80,19 +78,7 @@ def getDeviceData(): # Used to get device data
 
     cpuFreq = round(freq.current, 2)
 
-    usedDisk = round(disk.used / (1024*1024*1024), 2) #GB
-
-    # Set the duty cycle based on the desired setting
-    if cpuTemp <=30:
-        fanSpeed = 0
-        pwm.ChangeDutyCycle(0)
-    elif cpuTemp <40:
-        fanSpeed = 50
-        pwm.ChangeDutyCycle(50)
-    elif cpuTemp >=40:
-        fanSpeed = 100
-        pwm.ChangeDutyCycle(100)
-    
+    usedDisk = round(disk.used / (1024*1024*1024), 2) #GB    
     
     deviceData = [cpuTemp,cpuFreq,usedDisk]
 
