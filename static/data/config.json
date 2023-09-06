@@ -25,5 +25,9 @@
     "heatControl": {
         "_description": "Window open temp",
         "high": 25
+    },
+    "readRetries": {
+        "_description": "Number of retires to read DHT sensors",
+        "retries": 3
     }
 }

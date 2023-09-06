@@ -93,9 +93,9 @@ def getData(): # Used to get tempuratues from sensors
 
     tempHigh = configData['tempSettings']['high']
     tempLow = configData['tempSettings']['low']
+    num_retries = configData['readRetries']['retries']
 
     windowTemp = configData['heatControl']['high']
-    
     insideHumidity, insideTemperature = Adafruit_DHT.read_retry(sensor, insideSensor)
     outsideHumidity, outsideTemperature = Adafruit_DHT.read_retry(sensor, outsideSensor)
     boxHumidty, boxTemperature = Adafruit_DHT.read_retry(sensor, boxSensor)
@@ -284,36 +284,41 @@ def start():
     global current_time
     global crash
     global allData
+    runTime = time.time()
 
     while running:
-        try: 
-            if time.time() >= crash[2] + 30 :crash = [False, None, None]
-        except: None
-        try:
-            configFile = open(configPath)
-            configData = json.load(configFile)
-        except Exception as e:
-            crash = [True, "config | " +str(e), time.time()]
 
-        # Trigger the water system
-        current_time = datetime.datetime.now()
-        try:
-            getDeviceData()
-        except Exception as e:
-            crash = [True, "getDeviceData() | " +str(e), time.time()]
-        
-        try:
-            getData()
-        except Exception as e:
-            crash = [True, "getData() | " + str(e), time.time()]
-        
-        try:
-            checkSchedule()
-        except Exception as e:
-            crash = [True, "checkSchedule() | " +str(e)]
+        if time.time() >= runTime:
+            runTime = time.time() + configData['updateFreq']['time']
 
-        allData = [data,deviceData]
+            try: 
+                if time.time() >= crash[2] + 30 :crash = [False, None, None]
+            except: None
+            try:
+                configFile = open(configPath)
+                configData = json.load(configFile)
+            except Exception as e:
+                crash = [True, "config | " +str(e), time.time()]
 
-        log(allData)
+            # Trigger the water system
+            current_time = datetime.datetime.now()
+            try:
+                getDeviceData()
+            except Exception as e:
+                crash = [True, "getDeviceData() | " +str(e), time.time()]
+            
+            try:
+                getData()
+            except Exception as e:
+                crash = [True, "getData() | " + str(e), time.time()]
+            
+            try:
+                checkSchedule()
+            except Exception as e:
+                crash = [True, "checkSchedule() | " +str(e)]
 
-        time.sleep(configData['updateFreq']['time'])
+            allData = [data,deviceData]
+
+            log(allData)
+
+        time.sleep(0.2)
