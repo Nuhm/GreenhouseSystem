@@ -1,3 +1,33 @@
+@media (prefers-color-scheme: light) {
+    /*
+    White - rgb(24,24,24)
+    Whitesmoke - rgb(31,31,31)
+    */
+    body {
+        color: black;
+        background-color: white;
+    }
+    .loading{
+        background-color: whitesmoke;
+    }
+    .water {
+        background-color: whitesmoke;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        color: white;
+        background-color: rgb(24,24,24);
+    }
+    .loading{
+        background-color: rgb(31,31,31);
+    }
+    .water {
+        background-color: rgb(31,31,31);
+    }
+}
+
 * {
     margin: 0px;
     padding: 0px;
@@ -14,6 +44,24 @@ body {
     font-size: xx-large;
     text-align: center;
     width: 100%;
+}
+
+.services{
+    width: 45%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.services .left {
+    float: left;
+    width: 45%;
+}
+.services .right {
+    float: right;
+    width: 45%;
+}
+.right #update {
+    color: grey;
 }
 
 .status {
@@ -57,7 +105,6 @@ body {
 .water {
     margin-top: 5%;
     text-align: center;
-    background-color: whitesmoke;
     border-radius: 15px;
     padding: 2%;
 }
@@ -86,9 +133,6 @@ body {
     margin-top: 0.5%;
     padding: 3%;
     border-radius: 15px;
-}
-.water .status .loading{
-    background-color: whitesmoke;
 }
 .water .status .off{
     background-color: rgb(231, 66, 66);
