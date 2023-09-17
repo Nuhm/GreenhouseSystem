@@ -13,7 +13,6 @@ input {
     border: 0px;
     border-radius: 5px;
     padding: 5%;
-    background-color: lightblue;
 }
 
 .title {
@@ -58,7 +57,6 @@ input {
     margin-left: auto;
     margin-right: auto;
     border-radius: 15px;
-    background-color: whitesmoke;
     padding: 2%;
     padding: 2%;
 }
@@ -90,7 +88,6 @@ input {
 .updateBtn:hover {
     transition: 0.2s;
     cursor: pointer;
-    background-color: rgb(9, 188, 9);
 }
 
 @media screen and (max-width: 1000px){
@@ -98,4 +95,53 @@ input {
         transition: 0.2s;
         width: 90%;
     }
+}
+
+@media (prefers-color-scheme: light) {
+    /*
+   White - rgb(24,24,24)
+   Whitesmoke - rgb(31,31,31)
+   */
+   body {
+       background-color: white;
+       color: black;
+   }
+   .other {
+       background-color: whitesmoke;
+   }
+   input {
+       background-color: lightblue;
+       color: black;
+   }
+   .updateBtn {
+       background-color: white;
+       color: black;
+   }
+   .updateBtn:hover {
+       background-color: rgb(9, 188, 9);
+   }
+   .other {
+       max-width: 100%;
+   }
+}
+
+@media (prefers-color-scheme: dark) {
+   body {
+       background-color: rgb(24,24,24);
+       color: white;
+   }
+   .other {
+       background-color: rgb(31,31,31);
+   }
+   input {
+       background-color: rgb(14, 58, 75); 
+       color: white;
+   }
+   .updateBtn {
+       background-color: rgb(24,24,24);
+       color: white;
+   }
+   .updateBtn:hover {
+       background-color: rgb(20, 104, 20);
+   }
 }
