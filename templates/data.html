@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Greenhouse</title>
+    <title>Greenhouse - data</title>
 </head>
 <body>
     <p class="title">[ Greenhouse system ]</p>
@@ -22,12 +22,14 @@
             <button id="search" onclick="searchDates()">Search</button>
         </div>
         <p>Quick dates</p>
-
+        <button id="hour" onclick="hour()">Hour</button>
         <button id="today" onclick="today()">Today</button>
         <button id="yesturday" onclick="yesturday()">Yesterday</button>
         <button id="7days" onclick="quickDate(7)">7 Days</button>
         <button id="15days" onclick="quickDate(15)">15 Days</button>
         <button id="30days" onclick="quickDate(30)">30 days</button>
+        <p>Auto update</p>
+        <button id="autoUpdate" onclick="autoUpdate()" class="off">Off</button>
     </div>
 
     <div class="controls">
