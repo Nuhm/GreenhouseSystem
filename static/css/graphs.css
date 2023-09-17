@@ -5,20 +5,34 @@
   border-radius: 5px;
 }
 
-.humid-color-bar {
-  background: linear-gradient(to top, rgb(0, 166, 255) 0%, rgb(0, 166, 255) var(--percentage), whitesmoke var(--percentage), whitesmoke 100%);
+@media (prefers-color-scheme: light) {
+  .humid-color-bar {
+    background: linear-gradient(to top, rgb(0, 166, 255) 0%, rgb(0, 166, 255) var(--percentage), whitesmoke var(--percentage), whitesmoke 100%);
+  }
+  .temp-color-bar {
+    background: linear-gradient(to top, rgb(255, 64, 0) 0%, rgb(255, 64, 0) var(--percentage), whitesmoke var(--percentage), whitesmoke 100%);
+  }
+  .freq-color-bar {
+    background: linear-gradient(to top, rgb(210, 250, 0) 0%, rgb(210, 250, 0) var(--percentage), whitesmoke var(--percentage), whitesmoke 100%);
+  }
+  .storage-color-bar {
+    background: linear-gradient(to top, rgb(10, 248, 94) 0%, rgb(10, 248, 94) var(--percentage), whitesmoke var(--percentage), whitesmoke 100%);
+  }
 }
-.temp-color-bar {
-  background: linear-gradient(to top, rgb(255, 64, 0) 0%, rgb(255, 64, 0) var(--percentage), whitesmoke var(--percentage), whitesmoke 100%);
-}
-.freq-color-bar {
-  background: linear-gradient(to top, rgb(210, 250, 0) 0%, rgb(210, 250, 0) var(--percentage), whitesmoke var(--percentage), whitesmoke 100%);
-}
-.storage-color-bar {
-  background: linear-gradient(to top, rgb(10, 248, 94) 0%, rgb(10, 248, 94) var(--percentage), whitesmoke var(--percentage), whitesmoke 100%);
-}
-.fan-color-bar {
-  background: linear-gradient(to top, rgb(210, 250, 0) 0%, rgb(210, 250, 0) var(--percentage), whitesmoke var(--percentage), whitesmoke 100%);
+@media (prefers-color-scheme: dark) {
+  .humid-color-bar {
+    transition: 0.2s;
+    background: linear-gradient(to top, rgb(40, 133, 230) 0%, rgb(40, 133, 230) var(--percentage), rgb(31,31,31) var(--percentage), rgb(31,31,31) 100%);
+  }
+  .temp-color-bar {
+    background: linear-gradient(to top, rgb(200, 0, 60) 0%, rgb(200, 0, 60) var(--percentage), rgb(31,31,31) var(--percentage), rgb(31,31,31) 100%);
+  }
+  .freq-color-bar {
+    background: linear-gradient(to top, rgb(210, 190, 80) 0%, rgb(210, 190, 80) var(--percentage), rgb(31,31,31) var(--percentage), rgb(31,31,31) 100%);
+  }
+  .storage-color-bar {
+    background: linear-gradient(to top, rgb(10, 150, 30) 0%, rgb(10, 150, 30) var(--percentage), rgb(31,31,31) var(--percentage), rgb(31,31,31) 100%);
+  }
 }
 
 .color-bar[data-value="0"] {
