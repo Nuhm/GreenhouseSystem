@@ -1,6 +1,13 @@
 function loadable(){
-    getCurrentData();
-    getStatus();
+    // Check if the internet is connected
+    if (navigator.onLine == false) {
+        // Show a message
+        document.getElementById("status").innerHTML = "Disconnected";
+        document.getElementById("status").style.color = "grey";
+    }else {
+        getCurrentData();
+        getStatus();
+    }
 };
 
 
@@ -48,8 +55,7 @@ function getCurrentData(){
 };
 
 function displayCurrentData(data){
-    // data = [watering, autowatering, indoorHumid, indoorTemp, outsideHumid, outsideTemp, boxHumid, boxTemp, cpuTemp, cpuFreq, usedDisk, fanSpeed, window]
-
+    // data = [watering, autowatering, indoorHumid, indoorTemp, outsideHumid, outsideTemp, boxHumid, boxTemp, cpuTemp, cpuFreq, usedDisk, window]
     const indoorHumid = document.getElementById("indoorHumid");
     const indoorTemp = document.getElementById("indoorTemp");
     const outsideHumid = document.getElementById("outsideHumid");
@@ -59,7 +65,6 @@ function displayCurrentData(data){
     const cpuTemp = document.getElementById("cpuTemp");
     const cpuFreq = document.getElementById("cpuFreq");
     const storage = document.getElementById("storage");
-    const fanSpeed = document.getElementById("fanSpeed");
 
     const watering = document.getElementById("watering");
     const autoWatering = document.getElementById("autoWatering");
@@ -74,7 +79,9 @@ function displayCurrentData(data){
     const cpuTempBar = document.getElementById('cpuTempBar');
     const cpuFreqBar = document.getElementById('cpuFreqBar');
     const storageBar = document.getElementById('storageBar');
-    const fanSpeedBar = document.getElementById('fanSpeedBar');
+
+    const update = document.getElementById('update');
+    update.innerHTML = data[13];
 
     indoorHumid.innerHTML = data[2]+"%";
     indoorHumidBar.dataset.value = data[2];
@@ -111,9 +118,6 @@ function displayCurrentData(data){
     let storagePer = data[10]/64 * 100;
     storageBar.dataset.value = storagePer;
 
-    fanSpeed.innerHTML = data[11]+"%";
-    fanSpeedBar.dataset.value = data[11];
-
 
     const indoorHumidBar_value = parseInt(indoorHumidBar.getAttribute('data-value'));
     indoorHumidBar.style.setProperty('--value', indoorHumidBar_value);
@@ -135,8 +139,6 @@ function displayCurrentData(data){
     cpuFreqBar.style.setProperty('--value', cpuFreqBar_value);
     const storageBar_value = parseInt(storageBar.getAttribute('data-value'));
     storageBar.style.setProperty('--value', storageBar_value);
-    const fanSpeedBar_value = parseInt(fanSpeedBar.getAttribute('data-value'));
-    fanSpeedBar.style.setProperty('--value', fanSpeedBar_value);
 
 
     if (data[0] == true){
