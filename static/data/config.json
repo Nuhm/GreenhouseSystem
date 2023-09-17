@@ -4,7 +4,7 @@
         "Monday": "14:00",
         "Tuesday": "14:00",
         "Wednesday": "14:00",
-        "Thursday": "14:00",
+        "Thursday": "14:10",
         "Friday": "14:00",
         "Saturday": "14:00",
         "Sunday": "14:00"
@@ -19,8 +19,8 @@
     },
     "tempSettings": {
         "_description": "Boundary for home heating on/off",
-        "high": 16,
-        "low": 14
+        "high": 20,
+        "low": 18
     },
     "heatControl": {
         "_description": "Window open temp",
