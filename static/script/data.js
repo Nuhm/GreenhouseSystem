@@ -5,6 +5,85 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(today);
 
 let saveData = [];
+let auto = false;
+
+function update(){
+  if (auto) {
+    hour()
+  }
+}
+
+function autoUpdate(){
+  let button = document.getElementById("autoUpdate")
+  auto = !auto;
+
+  if (auto) {
+    button.classList.remove('off');
+    button.classList.add('on');
+    button.innerHTML = 'On';
+  } else {
+    button.classList.remove('on');
+    button.classList.add('off');
+    button.innerHTML = 'Off';
+  }
+
+}
+function hour(){
+  let button = document.getElementById("hour")
+  button.innerHTML = "Loading";
+  button.classList.add("loading");
+  let today = new Date();
+  let yyyy = today.getFullYear();
+  let mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+  let dd = String(today.getDate()).padStart(2, '0');
+  let startDateFormat = yyyy + '-' + mm + '-' + dd;
+  
+  const hours = today.getHours();
+  const minutes = today.getMinutes();
+  const seconds = today.getSeconds();
+
+  const oneHourAgo = new Date();
+  oneHourAgo.setHours(hours - 1);
+  oneHourAgo.setMinutes(minutes);
+  oneHourAgo.setSeconds(seconds);
+
+  //Get the data here then pass it to loadcharts
+  fetch('/data-between/'+startDateFormat+'/'+startDateFormat)
+
+    .then(response => response.json())
+    .then(data=>{
+      if(data.status != 200){
+        alert("Hmm something went wrong...")
+        console.log("Get status error - " + data.data + " | " + data.status);
+      }else{
+        let rawData = data.data;
+        let saveData = rawData[0][0]
+        let date = rawData[0][1]
+        let newdata = []
+        let selectedTimes = []
+
+        for (let data of saveData) {
+          const timeParts = data[9].split(":");
+          const hour = Number(timeParts[0]);
+          const minute = Number(timeParts[1]);
+          const second = Number(timeParts[2]);
+        
+          const timeObj = new Date();
+          timeObj.setHours(hour);
+          timeObj.setMinutes(minute);
+          timeObj.setSeconds(second);
+        
+          if (timeObj >= oneHourAgo && timeObj <= today) {
+            selectedTimes.push(data);
+          }
+        }
+        let store = [selectedTimes, date]
+        newdata.push(store)
+        resetBtn();
+        loadCharts(newdata);
+      };
+    });
+}
 
 function today(){
   let button = document.getElementById("today")
@@ -372,7 +451,7 @@ function cpuFreq(all_data) { //Line chart | frequency Vs time
     curveType: 'function',
     legend: { position: 'bottom' },
     vAxes: {
-       0: {title: 'Frequency', minValue: 0, maxValue: 30},
+       0: {title: 'Frequency', minValue: 600, maxValue: 1000},
     },
     series: {
         0: {targetAxisIndex: 0, color: "darkblue"},
@@ -387,8 +466,8 @@ function cpuFreq(all_data) { //Line chart | frequency Vs time
 }
 
 function resetBtn(){
-  const buttons = ["today", "yesturday", "7days", "15days", "30days"]
-  const text = ["Today", "Yesturday", "7 Days", "15 Days", "30 Days"]
+  const buttons = ["hour", "today", "yesturday", "7days", "15days", "30days"]
+  const text = ["Hour", "Today", "Yesturday", "7 Days", "15 Days", "30 Days"]
   for (x in buttons){
     let button = document.getElementById(buttons[x])
     button.innerHTML = text[x];
@@ -429,3 +508,5 @@ function downloadData(){
   URL.revokeObjectURL(url);
   document.body.removeChild(a);
 }
+
+setInterval(update, 6000);
