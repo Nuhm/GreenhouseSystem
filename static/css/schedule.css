@@ -37,7 +37,6 @@ input {
     transition: 0.2s;
     flex: 1;
     text-align: center;
-    background-color: whitesmoke;
     padding: 2%;
     border-radius: 15px;
     margin-top: 1%;
@@ -123,6 +122,9 @@ input {
    .other {
        max-width: 100%;
    }
+   .days .day {
+    background-color: whitesmoke;
+   }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -143,5 +145,8 @@ input {
    }
    .updateBtn:hover {
        background-color: rgb(20, 104, 20);
+   }
+   .days .day {
+    background-color: rgb(31,31,31);
    }
 }
