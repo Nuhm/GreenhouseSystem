@@ -13,8 +13,16 @@
     <p class="title">[ Greenhouse system ]</p>
     <br>
     <br>
-    <p class="status">Service status:</p>
-    <p class="status" id="status">Loading status...</p>
+    <div class="services">
+        <div class="left">
+            <p class="status">Service status:</p>
+            <p class="status" id="status">Loading status...</p>
+        </div>
+        <div class="right">
+            <p class="status">Last update:</p>
+            <p class="status" id="update">Pending</p>
+        </div>
+    </div>
 
     <div class="airDetails">
         <div class="box">
@@ -80,9 +88,6 @@
             </div>
             <div id="cpuFreqBar" class="freq-color-bar color-bar" data-value="50">
                 <p id="cpuFreq">Loading cpu freq...</p>
-            </div>
-            <div id="fanSpeedBar" class="fan-color-bar color-bar" data-value="50">
-                <p id="fanSpeed">Loading fan speed...</p>
             </div>
         </div>
 
