@@ -245,6 +245,7 @@ def currentData():
             dataToShare.append(i)
     dataToShare.append(fanSpeed)
     dataToShare.append(window)
+    dataToShare.append(datetime.datetime.now().strftime("%H:%M"))
     return dataToShare
 
 def getSchedule():
