@@ -5,9 +5,22 @@ It runs while there is enough electricity.
 
 # Info
 - The code may be clunky (This was designed/built as I went along)
-- A lot of modifications will be needed if you want to use this. (I have not designed this to be shared)
+- I use 30watt solar to power this device. It usually will get enough power to boot and run
+
+# Functions
+- Runs off 12v motorbike/car battery
+- Uses 12v solenoid valve to water plants
+- Supports servo controllable window
+- Indoor temp/humidty
+- Outdoor temp/humidty
+- Raspberry pi box temp/humidty
+- Raspberry pi stats
+- Logging to csv
+- Visual data graphs
+- Visual web UI
 
 # Modules
 - flask
 - waitress
 - psutil
+- Adafruit-DHT
