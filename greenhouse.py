@@ -4,6 +4,7 @@ global crash
 
 # File/File paths
 logFilePath = "/home/green/static/data/logs/"
+crashFilePath = "/home/green/static/data/crashLogs/"
 logFilesRow = ["indoorHumid","indoorTemp","outsideHumid","outsideTemp","boxHumid","boxTemp","cpuTemp","cpuFreq","storageUsed","time"]
 configPath = "/home/green/static/data/config.json"
 # - - - - - - - 
@@ -22,7 +23,7 @@ watering = False
 window = False # False is closed | True is open
 update = False # Used for webhook
 time_end = None
-crash = [False, None]
+crash = [False, None, None]
 running = True
 # - - - - - - - 
 
@@ -276,6 +277,26 @@ def updateJson(data):
         return [500, str(e)]
     
     return [200, "None"]
+
+def logCrash(crashData : list): #Changed this to save actual time not time in long format
+
+    # [True, "getData() | local variable 'innerL' referenced before assignment", 1689893586.5361037] | 2023-07-20
+
+    crash_time = crashData[2]
+    time = datetime.datetime.now()
+
+    formatted_date = time.strftime("%Y-%m-%d")
+    crash_time = crash_time.strftime("%H:%M:%S")
+
+    filename = crashFilePath+str(formatted_date)+".txt"
+    row = str(crashData[1])+", "+str(crash_time)+"\n"
+
+    if not os.path.exists(filename):
+        with open(filename, 'w', newline='') as file:
+            file.write(row)
+    else:
+        with open(filename, 'a', newline='') as file:
+            file.write(row)
 
 
 
