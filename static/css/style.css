@@ -1,3 +1,10 @@
+:root {
+    --light-primary: white;
+    --light-secondary: whitesmoke;
+    --dark-primary: rgb(24, 24, 24);
+    --dark-secondary: rgb(31, 31, 31);
+}
+
 @media (prefers-color-scheme: light) {
     /*
     White - rgb(24,24,24)
@@ -5,26 +12,26 @@
     */
     body {
         color: black;
-        background-color: white;
+        background-color: var(--light-primary);
     }
     .loading{
-        background-color: whitesmoke;
+        background-color: var(--light-secondary);
     }
     .water {
-        background-color: whitesmoke;
+        background-color: var(--light-secondary);
     }
 }
 
 @media (prefers-color-scheme: dark) {
     body {
         color: white;
-        background-color: rgb(24,24,24);
+        background-color: var(--dark-primary);
     }
     .loading{
-        background-color: rgb(31,31,31);
+        background-color: var(--dark-secondary);
     }
     .water {
-        background-color: rgb(31,31,31);
+        background-color: var(--dark-secondary);
     }
 }
 
