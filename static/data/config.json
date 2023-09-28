@@ -11,7 +11,7 @@
     },
     "watering": {
         "_description": "Data relevent to watering",
-        "duration": "00:01"
+        "duration": 60
     },
     "updateFreq": {
         "_description": "The time in seconds between updates",

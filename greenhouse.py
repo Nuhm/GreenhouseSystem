@@ -22,7 +22,7 @@ autoWatering = False
 watering = False
 window = False # False is closed | True is open
 update = False # Used for webhook
-time_end = None
+time_end = time.time()
 crash = [False, None, None]
 running = True
 # - - - - - - - 
@@ -201,22 +201,14 @@ def checkSchedule(): # Used to update watering schedule
     time = current_time.strftime("%H:%M")
 
     schedule = configData['schedule']
-    durationStr = configData['watering']['duration']
-
+    duration = configData['watering']['duration']
     if schedule[day_of_week] != "false":
         if str(time) == schedule[day_of_week] and autoWatering == False:
-            # Parse the duration string into a datetime.timedelta object
-            time_obj = datetime.datetime.strptime(time, '%H:%M').time()
-            duration = datetime.datetime.strptime(durationStr, '%H:%M')
-            duration_delta = datetime.timedelta(hours=duration.hour, minutes=duration.minute)
-
-            # Calculate the end time by adding the duration delta to the start time
-            time_end = (datetime.datetime.combine(datetime.date.today(), time_obj) + duration_delta).time()
-            time_end = time_end.strftime("%H:%M")
+            time_end = time.time() + duration
             autoWatering = True
             water(True)
         elif autoWatering:
-            if str(time) == str(time_end):
+            if time.time() >= time_end:
                 water(False)
                 autoWatering = False
 
@@ -268,7 +260,7 @@ def updateJson(data):
             config['schedule'][days[i]] = data[0][i]
             i+=1
         
-        config['watering']['duration'] = data[1]
+        config['watering']['duration'] = int(data[1])
 
         # Write the modified object back to the JSON file
         with open(configPath, "w") as outfile:
