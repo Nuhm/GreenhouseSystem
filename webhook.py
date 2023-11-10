@@ -1,10 +1,16 @@
 import requests
+import time
 
 
-def send(event_name):
-    webhook_url = "https://maker.ifttt.com/trigger/"+event_name+"/with/key/eHJt8MGlmWfbo5dNivgZBC96kp6_Rus_WnrAylMHnwJ"
+def send(server,event_key):
+    rCode = -1
 
-
-    response = requests.post(webhook_url.format(event=event_name))
-
-    return response.status_code
+    start = time.time()
+    rCode = -1
+    while rCode !=200 and time.time() < start + 1:
+        webhook_url = f"{server}/api/webhook/{event_key}"
+        response = requests.post(webhook_url)
+        rCode = response.status_code
+        time.sleep(0.5)
+    
+    return rCode
