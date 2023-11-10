@@ -14,11 +14,7 @@ function getTime(){
             schedule = data[0];
             duration = data[1];
 
-            duration = duration['duration'];
-
-            const durationElement = document.getElementById('durationTime');
-
-            durationElement.value = duration;
+            document.getElementById('durationTime').value =  duration['duration'];
 
             for (let day in days){
                 let element = document.getElementById(days[day].toLowerCase() + "Time")
