@@ -1,13 +1,13 @@
 {
     "schedule": {
         "_description": "Stores automatic watering schedule",
-        "Monday": "14:00",
-        "Tuesday": "14:00",
-        "Wednesday": "14:00",
-        "Thursday": "14:10",
-        "Friday": "14:00",
-        "Saturday": "14:00",
-        "Sunday": "14:00"
+        "Monday": "false",
+        "Tuesday": "false",
+        "Wednesday": "false",
+        "Thursday": "false",
+        "Friday": "false",
+        "Saturday": "false",
+        "Sunday": "false"
     },
     "watering": {
         "_description": "Data relevent to watering",
@@ -26,8 +26,12 @@
         "_description": "Window open temp",
         "high": 25
     },
-    "readRetries": {
-        "_description": "Number of retires to read DHT sensors",
-        "retries": 3
+    "webhook": {
+        "server": "http(s)://SERVER_HERE",
+        "keys":{
+            "over": "OVER_KEY",
+            "under": "UNDER_KEY",
+            "crash": "CRASH_KEY"
+        }
     }
 }
