@@ -24,6 +24,9 @@ window = False # False is closed | True is open
 update = False # Used for webhook
 time_end = time.time()
 crash = [False, None, None]
+alerted = False
+crashAlerted = False
+lastCrashTime = 0
 running = True
 # - - - - - - - 
 
@@ -94,7 +97,6 @@ def getData(): # Used to get tempuratues from sensors
 
     tempHigh = configData['tempSettings']['high']
     tempLow = configData['tempSettings']['low']
-    num_retries = configData['readRetries']['retries']
 
     windowTemp = configData['heatControl']['high']
     insideHumidity, insideTemperature = Adafruit_DHT.read_retry(sensor, insideSensor)
@@ -131,15 +133,18 @@ def getData(): # Used to get tempuratues from sensors
         lastInsideHumidity = insideHumidity
         lastInsideTemperature = insideTemperature
     
+    server = configData['webhook']['server']
 
     if update:
         if outsideTemperature <= tempLow:
-            response = webhook.send("greenhouseUnder")
+            key = configData['webhook']['keys']['under']
+            response = webhook.send(server, key)
             if response == 200:
                 update = False
 
     else:
         if outsideTemperature >=tempHigh:
+            key = configData['webhook']['keys']['over']
             response = webhook.send("greenhouseOver")
             if response == 200:
                 update = True
@@ -271,24 +276,39 @@ def updateJson(data):
     return [200, "None"]
 
 def logCrash(crashData : list): #Changed this to save actual time not time in long format
+    global crashAlerted
+    global crashFilePath
+    global lastCrashTime
 
     # [True, "getData() | local variable 'innerL' referenced before assignment", 1689893586.5361037] | 2023-07-20
 
     crash_time = crashData[2]
-    time = datetime.datetime.now()
+    if crash_time != lastCrashTime:
+        lastCrashTime = crash_time
 
-    formatted_date = time.strftime("%Y-%m-%d")
-    crash_time = crash_time.strftime("%H:%M:%S")
+        time = datetime.datetime.now()
 
-    filename = crashFilePath+str(formatted_date)+".txt"
-    row = str(crashData[1])+", "+str(crash_time)+"\n"
+        formatted_date = time.strftime("%Y-%m-%d")
 
-    if not os.path.exists(filename):
-        with open(filename, 'w', newline='') as file:
-            file.write(row)
-    else:
-        with open(filename, 'a', newline='') as file:
-            file.write(row)
+        time_obj = datetime.datetime.fromtimestamp(crash_time)
+        crash_time = time_obj.strftime("%H:%M:%S")
+
+        filename = f"{crashFilePath}{formatted_date}.txt"
+        row = f"{str(crashData[1])}, {str(crash_time)}\n"
+
+        if not os.path.exists(filename):
+            with open(filename, 'w', newline='') as file:
+                file.write(row)
+        else:
+            with open(filename, 'a', newline='') as file:
+                file.write(row)
+        
+    if crashAlerted == False:
+        server = configData['webhook']['server']
+        key = configData['webhook']['keys']['crash']
+        response = webhook.send(server, key)
+        if response == 200:
+            crashAlerted = True
 
 
 
@@ -304,6 +324,9 @@ def start():
 
         if time.time() >= runTime:
             runTime = time.time() + configData['updateFreq']['time']
+            
+            if crash[0]:
+                logCrash(crash)
 
             try: 
                 if time.time() >= crash[2] + 30 :crash = [False, None, None]
@@ -329,7 +352,7 @@ def start():
             try:
                 checkSchedule()
             except Exception as e:
-                crash = [True, "checkSchedule() | " +str(e)]
+                crash = [True, "checkSchedule() | " +str(e), time.time()]
 
             allData = [data,deviceData]
 
