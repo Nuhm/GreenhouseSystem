@@ -145,7 +145,7 @@ def getData(): # Used to get tempuratues from sensors
     else:
         if outsideTemperature >=tempHigh:
             key = configData['webhook']['keys']['over']
-            response = webhook.send("greenhouseOver")
+            response = webhook.send(server, key)
             if response == 200:
                 update = True
     
