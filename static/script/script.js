@@ -47,7 +47,7 @@ function getCurrentData(){
     .then(data=>{
     
         if(data.status != 200){
-            console.log("Get status error - " + data.data + " | " + data.status);
+            console.log("Get current data error - " + data.data + " | " + data.status);
         }else{
             displayCurrentData(data.data);
         };
