@@ -106,12 +106,12 @@ function displayCurrentData(data){
     boxTempBar.dataset.value = boxTempPer;
 
     cpuTemp.innerHTML = data[8]+"°C";
-    let cpuTempPer = data[8]/60 * 100;
+    let cpuTempPer = data[8]/45 * 100;
     cpuTempBar.dataset.value = cpuTempPer;
 
 
     cpuFreq.innerHTML = data[9]+"Mhz";
-    let cpuFreqPer = data[9]/1800 * 100;
+    let cpuFreqPer = data[9]/1000 * 100;
     cpuFreqBar.dataset.value = cpuFreqPer;
 
     storage.innerHTML = data[10]+"GB";
